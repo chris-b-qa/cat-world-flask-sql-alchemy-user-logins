@@ -65,7 +65,7 @@ def create_user():
     user_form = UserForm()
 
     if user_form.validate():
-        new_user = User(name=user_form.name.data, password=user_form.password.data)
+        new_user = User(name=user_form.name.data, email=user_form.email.data, password=user_form.password.data)
         db.session.add(new_user)
         db.session.commit()
 

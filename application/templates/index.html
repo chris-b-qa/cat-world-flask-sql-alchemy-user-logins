@@ -12,6 +12,7 @@
     <form method="POST" action="/users">
         {{ user_form.hidden_tag() }}
         {{ user_form.name.label }} {{ user_form.name }}
+        {{ user_form.email.label }} {{ user_form.email }}
         {{ user_form.password.label }} {{ user_form.password }}
         {{ user_form.submit }}
     </form>
