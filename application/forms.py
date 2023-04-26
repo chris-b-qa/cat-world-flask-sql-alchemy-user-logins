@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField
+from wtforms import StringField, SubmitField, SelectField, PasswordField, EmailField
 from wtforms.validators import DataRequired, Length
 
 from application.database import db
@@ -10,6 +10,8 @@ from application.models import User
 
 class UserForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(max=255)])
+    email = EmailField('Email', validators=[DataRequired(), Length(max=255)])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
     submit = SubmitField('Add User')
 
 
@@ -29,3 +31,9 @@ class DeleteForm(FlaskForm):
 class EditForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(max=255)])
     submit = SubmitField('Save changes')
+
+
+class LoginForm(FlaskForm):
+    email = EmailField('Email', validators=[DataRequired(), Length(max=255)])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')

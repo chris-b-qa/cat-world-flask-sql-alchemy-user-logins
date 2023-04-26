@@ -12,6 +12,7 @@
     <form method="POST" action="/users">
         {{ user_form.hidden_tag() }}
         {{ user_form.name.label }} {{ user_form.name }}
+        {{ user_form.password.label }} {{ user_form.password }}
         {{ user_form.submit }}
     </form>
 
@@ -40,5 +41,11 @@
     </form>
     {% else %}
         <p>Can't add Cats until we have some users!</p>
+    {% endif %}
+
+    {% if logged_in_user %}
+        <p>{{ logged_in_user.name}} is logged in!</p><a href="/logout">Logout?</a>
+    {% else %}
+        <a href="/login">Log in?</a>
     {% endif %}
 {% endblock %}

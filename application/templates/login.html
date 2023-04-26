@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% set active_page = 'login' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <h1>Login</h1>
+    <form method="POST" action="/login">
+        {{ login_form.hidden_tag() }}
+        {{ login_form.email.label }} {{ login_form.email }}
+        {{ login_form.password.label }} {{ login_form.password }}
+        {{ login_form.submit }}
+    </form>
+{% endblock %}

@@ -2,10 +2,11 @@
 import os
 
 from flask import Flask
+from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 
 from application.database import db
-from application.models import *
+# from application.models import *
 
 load_dotenv()
 
@@ -22,5 +23,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{db_user}:{db_password}@{db_ho
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 db.init_app(app)
+bcrypt = Bcrypt(app)
 
 from application import routes

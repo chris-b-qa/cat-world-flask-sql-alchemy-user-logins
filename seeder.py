@@ -1,11 +1,12 @@
 #!/usr/bin/python
 
-from application import db, app, User, Cat
+from application import db, app
+from application.models import User, Cat
 
 USERS = [
-    {'name': 'Steve'},
-    {'name': 'Bob'},
-    {'name': 'Mike'},
+    User(name='Steve', email='steve@example.com', password='password'),
+    User(name='Bob', email='bob@example.com', password='password1'),
+    User(name='Mike', email='mike@example.com', password='p@ssw0rd'),
 ]
 
 cats = [
@@ -16,7 +17,7 @@ cats = [
 ]
 
 with app.app_context():
-    db.session.bulk_insert_mappings(User, USERS)
+    db.session.add_all(USERS)
     db.session.commit()
 
     user_models = dict(db.session.execute(db.select(User.name, User.id)).all())
